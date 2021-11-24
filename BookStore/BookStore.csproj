@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\components\" />
     <Folder Include="ClientApp\src\services\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <ItemGroup>
