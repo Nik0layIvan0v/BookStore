@@ -10,7 +10,7 @@
         {
         }
 
-        //DbSets....
+        //Add DbSets....
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
