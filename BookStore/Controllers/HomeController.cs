@@ -7,8 +7,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class HomeController : ControllerBase
     {
         // GET: HomeController

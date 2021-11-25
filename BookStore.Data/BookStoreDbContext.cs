@@ -1,5 +1,6 @@
 ﻿namespace BookStore.Data
 {
+    using BookStore.Models;
     using Microsoft.EntityFrameworkCore;
     using System.Reflection;
 
@@ -10,12 +11,21 @@
         {
         }
 
+        public DbSet<Author> Authors { get; init; }
+
+        public DbSet<Book> Books { get; init; }
+
+        public DbSet<Genre> Genres { get; init; }
+
+        public DbSet<Review> Reviews { get; init; }
+
+        public DbSet<Publisher> Publishers { get; init; }
+
         //Add DbSets....
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            //base.OnModelCreating(modelBuilder); -> verify if needed!
         }
     }
 }

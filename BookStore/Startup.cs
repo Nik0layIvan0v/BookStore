@@ -23,8 +23,6 @@ namespace BookStore
         {
             services.AddControllersWithViews();
 
-            //services.AddDbContext<BookStoreDbContext>();
-
             services.AddScoped<BookStoreDesingTimeFactory>();
 
             // In production, the React files will be served from this directory
@@ -53,9 +51,9 @@ namespace BookStore
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
-            
+
             app.UseSpaStaticFiles();
-            
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
