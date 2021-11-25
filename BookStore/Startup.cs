@@ -1,5 +1,6 @@
 namespace BookStore
 {
+    using BookStore.Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -42,10 +43,14 @@ namespace BookStore
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            app.PrepareDatabase();
 
+            app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
+            
+            app.UseSpaStaticFiles();
+            
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
