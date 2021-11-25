@@ -12,7 +12,9 @@
         {
             using var serviceScope = applicationBuilder.ApplicationServices.CreateScope();
 
-            var dbContext = serviceScope.ServiceProvider.GetRequiredService<BookStoreDbContext>();
+            var dbContextFactory = serviceScope.ServiceProvider.GetRequiredService<BookStoreDesingTimeFactory>();
+
+            var dbContext = dbContextFactory.CreateDbContext();
 
             dbContext.Database.Migrate();
 

@@ -15,3 +15,5 @@ D:\Projects\BookStore\BookStore\BookStore\BookStore.Services\obj\Debug\net5.0\Bo
 D:\Projects\BookStore\BookStore\BookStore\BookStore.Services\obj\Debug\net5.0\BookStore.Services.dll
 D:\Projects\BookStore\BookStore\BookStore\BookStore.Services\obj\Debug\net5.0\ref\BookStore.Services.dll
 D:\Projects\BookStore\BookStore\BookStore\BookStore.Services\obj\Debug\net5.0\BookStore.Services.pdb
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Services\bin\Debug\net5.0\BookStore.Common.dll
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Services\bin\Debug\net5.0\BookStore.Common.pdb

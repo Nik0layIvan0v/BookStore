@@ -1,5 +1,6 @@
 namespace BookStore
 {
+    using BookStore.Data;
     using BookStore.Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -21,6 +22,10 @@ namespace BookStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //services.AddDbContext<BookStoreDbContext>();
+
+            services.AddScoped<BookStoreDesingTimeFactory>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

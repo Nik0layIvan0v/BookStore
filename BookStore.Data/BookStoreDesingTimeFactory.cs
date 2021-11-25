@@ -7,12 +7,12 @@
 
     public class BookStoreDesingTimeFactory : IDesignTimeDbContextFactory<BookStoreDbContext>
     {
-        public BookStoreDbContext CreateDbContext(string[] args)
+        public BookStoreDbContext CreateDbContext(string[] args = null)
         {
-             var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
+            var configuration = new ConfigurationBuilder()
+               .SetBasePath(Directory.GetCurrentDirectory())
+               .AddJsonFile("appsettings.json")
+               .Build();
 
             var optionsBuilder = new DbContextOptionsBuilder<BookStoreDbContext>();
 

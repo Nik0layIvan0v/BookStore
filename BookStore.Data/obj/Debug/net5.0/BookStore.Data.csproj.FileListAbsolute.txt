@@ -13,3 +13,8 @@ D:\Projects\BookStore\BookStore\BookStore\BookStore.Data\obj\Debug\net5.0\BookSt
 D:\Projects\BookStore\BookStore\BookStore\BookStore.Data\obj\Debug\net5.0\BookStore.Data.dll
 D:\Projects\BookStore\BookStore\BookStore\BookStore.Data\obj\Debug\net5.0\ref\BookStore.Data.dll
 D:\Projects\BookStore\BookStore\BookStore\BookStore.Data\obj\Debug\net5.0\BookStore.Data.pdb
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Data\bin\Debug\net5.0\BookStore.Data.runtimeconfig.json
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Data\bin\Debug\net5.0\BookStore.Data.runtimeconfig.dev.json
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Data\bin\Debug\net5.0\BookStore.Common.dll
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Data\bin\Debug\net5.0\BookStore.Common.pdb
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Data\obj\Debug\net5.0\BookStore.Data.genruntimeconfig.cache

@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v5.0": {
       "BookStore.Models/1.0.0": {
+        "dependencies": {
+          "BookStore.Common": "1.0.0"
+        },
         "runtime": {
           "BookStore.Models.dll": {}
+        }
+      },
+      "BookStore.Common/1.0.0": {
+        "runtime": {
+          "BookStore.Common.dll": {}
         }
       }
     }
   },
   "libraries": {
     "BookStore.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BookStore.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

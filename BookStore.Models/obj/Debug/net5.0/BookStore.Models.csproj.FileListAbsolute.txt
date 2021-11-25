@@ -9,3 +9,7 @@ D:\Projects\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\Book
 D:\Projects\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.dll
 D:\Projects\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\ref\BookStore.Models.dll
 D:\Projects\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.pdb
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Models\bin\Debug\net5.0\BookStore.Common.dll
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Models\bin\Debug\net5.0\BookStore.Common.pdb
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.csproj.AssemblyReference.cache
+D:\Projects\BookStore\BookStore\BookStore\BookStore.Models\obj\Debug\net5.0\BookStore.Models.csproj.CopyComplete
