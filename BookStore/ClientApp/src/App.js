@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import Example from './components/ClassComponentsExample/Example';
 import { Route } from 'react-router';
+import CharacterList from './hooks/CharacterList';
 import './App.css';
 
 function App() {
@@ -144,6 +145,8 @@ function App() {
 					by parent!"
 				/>
 			</div>
+
+			<CharacterList />
 		</>
 	);
 }
