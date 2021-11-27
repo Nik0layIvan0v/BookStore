@@ -1,19 +1,26 @@
 import React from 'react';
 import { useEffect, useState, useRef } from 'react';
+import AuthContext from './contexts/authContext';
 import Example from './components/ClassComponentsExample/Example';
 import { Route } from 'react-router';
 import CharacterList from './hooks/CharacterList';
 import './App.css';
 
 function App() {
-	// const [array, setArray] = useState([]);
 	const [services, setServices] = useState([]);
 
-	// useEffect(() => {
-	//     fetch('https://localhost:3001/api/home')
-	//         .then((x) => x.json())
-	//         .then((res) => setArray(res));
-	// }, []);
+	/*
+		Asp.Net core fetch data.
+		const [array, setArray] = useState([]);
+
+		useEffect(() => {
+		    fetch('https://localhost:3001/api/home')
+		        .then((x) => x.json())
+		        .then((res) => setArray(res));
+		}, []);
+	*/
+
+	const [contextData, setContextData] = useState('Pesho');
 	const [username, setUsername] = useState('Controlled Field');
 	const [isValid, setIsValid] = useState(false);
 	const refExample = useRef();
@@ -59,95 +66,104 @@ function App() {
 	};
 
 	return (
-		<>
-			<div className="login-form">
-				<form method="POST" onSubmit={submitHandler}>
-					<div>
-						<label htmlFor="username">Username</label>
-						<input
-							type="text"
-							name="username"
-							id="username"
-							// defaultValue="uncontrolled form"
-							onChange={onChangeHandler}
-							value={username}
-						/>
-					</div>
-					<div
-						style={{
-							color: 'red',
-							fontSize: '10px',
-							padding: '0px',
-							margin: '0px',
-							textAlign: 'center',
-						}}
-					>
-						{isValid === false ? (
-							<span>This input is NOT valid!</span>
-						) : (
-							''
-						)}
-					</div>
-					<div>
-						<label htmlFor="password">Password</label>
-						<input
-							type="text"
-							name="password"
-							id="password"
-							defaultValue="Uncontrolled field"
-						/>
-					</div>
-					<div>
-						<label htmlFor="refExample">RefExample</label>
-						<input
-							type="text"
-							name="refExample"
-							id="refExample"
-							defaultValue="Ref field"
-							ref={refExample}
-						/>
-					</div>
-					<div>
-						<label htmlFor="services">
-							Select clinet type:{' '}
-						</label>
+		<AuthContext.Provider value={contextData}> 
+			<>
+				<div className="login-form">
+					<form method="POST" onSubmit={submitHandler}>
 						<div>
-							<select
-								type="select"
-								name="services"
-								id="services"
-								onChange={onServiceChangeHandler}
-							>
-								{services.map((s) => (
-									<option key={s._id} value={s._id}>
-										{s.name}
-									</option>
-								))}
-							</select>
+							<label htmlFor="username">Username</label>
+							<input
+								type="text"
+								name="username"
+								id="username"
+								// defaultValue="uncontrolled form"
+								onChange={onChangeHandler}
+								value={username}
+							/>
 						</div>
-					</div>
-					<div>
-						<label htmlFor="rememberMe">Remember me?</label>
-						<input
-							type="checkbox"
-							name="rememberMe"
-							id="rememberMe"
-							defaultChecked
-						/>
-					</div>
-					<input type="submit" value="Login" />
-				</form>
-			</div>
+						<div
+							style={{
+								color: 'red',
+								fontSize: '10px',
+								padding: '0px',
+								margin: '0px',
+								textAlign: 'center',
+							}}
+						>
+							{isValid === false ? (
+								<span>This input is NOT valid!</span>
+							) : (
+								''
+							)}
+						</div>
+						<div>
+							<label htmlFor="password">Password</label>
+							<input
+								type="text"
+								name="password"
+								id="password"
+								defaultValue="Uncontrolled field"
+							/>
+						</div>
+						<div>
+							<label htmlFor="refExample">
+								RefExample
+							</label>
+							<input
+								type="text"
+								name="refExample"
+								id="refExample"
+								defaultValue="Ref field"
+								ref={refExample}
+							/>
+						</div>
+						<div>
+							<label htmlFor="services">
+								Select clinet type:{' '}
+							</label>
+							<div>
+								<select
+									type="select"
+									name="services"
+									id="services"
+									onChange={onServiceChangeHandler}
+								>
+									{services.map((s) => (
+										<option
+											key={s._id}
+											value={s._id}
+										>
+											{s.name}
+										</option>
+									))}
+								</select>
+							</div>
+						</div>
+						<div>
+							<label htmlFor="rememberMe">
+								Remember me?
+							</label>
+							<input
+								type="checkbox"
+								name="rememberMe"
+								id="rememberMe"
+								defaultChecked
+							/>
+						</div>
+						<input type="submit" value="Login" />
+					</form>
+				</div>
 
-			<div className="classComponentExample">
-				<Example
-					title="Example Props title is passed
+				<div className="classComponentExample">
+					<Example
+						title="Example Props title is passed
 					by parent!"
-				/>
-			</div>
+					/>
+				</div>
 
-			<CharacterList />
-		</>
+				<CharacterList />
+			</>
+			</AuthContext.Provider>
 	);
 }
 

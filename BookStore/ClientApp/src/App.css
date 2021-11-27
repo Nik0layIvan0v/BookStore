@@ -1,3 +1,7 @@
 .login-form {
     text-align: center;
 }
+
+body {
+    margin: 16px auto;
+}
