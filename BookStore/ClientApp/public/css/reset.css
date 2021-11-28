@@ -1,0 +1,87 @@
+/*** The new CSS Reset - version 1.4.1 (last updated 23.11.2021) ***/
+
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+@import url("../fonts/ComforterBrush-Regular.ttf");
+@import url("../fonts/DancingScript-Bold.ttf");
+@import url('../fonts/DancingScript-Medium.ttf');
+@import url('../fonts/DancingScript-Regular.ttf');
+@import url('../fonts/DancingScript-SemiBold.ttf');
+@import url('../fonts/DancingScript-VariableFont_wght.ttf');
+@import url('../fonts/Estonia-Regular.ttf');
+@import url('../fonts/Lobster-Regular.ttf');
+@import url('../fonts/Roboto-Black.ttf');
+@import url('../fonts/Roboto-BlackItalic.ttf');
+@import url('../fonts/Roboto-Bold.ttf');
+@import url('../fonts/Roboto-BoldItalic.ttf');
+@import url('../fonts/Roboto-Italic.ttf');
+@import url('../fonts/Roboto-Light.ttf');
+@import url('../fonts/Roboto-LightItalic.ttf');
+@import url('../fonts/Roboto-Medium.ttf');
+@import url('../fonts/Roboto-MediumItalic.ttf');
+@import url('../fonts/Roboto-Regular.ttf');
+@import url('../fonts/Roboto-Thin.ttf');
+@import url('../fonts/Roboto-ThinItalic.ttfs');
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+
+*:where(:not(iframe,
+canvas,
+img,
+svg,
+video):not(svg *,
+symbol *)) {
+    all: unset;
+    display: revert;
+}
+
+
+/* Preferred box-sizing value */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+/* Remove list styles (bullets/numbers) */
+
+ol,
+ul {
+    list-style: none;
+}
+
+
+/* For images to not be able to exceed their container */
+
+img {
+    max-width: 100%;
+}
+
+
+/* removes spacing between cells in tables */
+
+table {
+    border-collapse: collapse;
+}
+
+
+/* revert the 'white-space' property for textarea elements on Safari */
+
+textarea {
+    white-space: revert;
+}
+
+
+/* revert for bug in Chromium browsers
+    - fix for the content editable attribute will work properly. */
+
+ :where([contenteditable]) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
+}

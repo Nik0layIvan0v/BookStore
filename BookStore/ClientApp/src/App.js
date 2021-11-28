@@ -5,11 +5,17 @@ import Example from './components/ClassComponentsExample/Example';
 import { Route } from 'react-router';
 import CharacterList from './hooks/CharacterList';
 import './App.css';
+import AppLoader from './components/AppLoader/AppLoader';
 
 function App() {
-	const [services, setServices] = useState([]);
+	return (
+		<div className="App">
+			<AppLoader />
+		</div>
+	);
+}
 
-	/*
+/*
 		Asp.Net core fetch data.
 		const [array, setArray] = useState([]);
 
@@ -18,7 +24,12 @@ function App() {
 		        .then((x) => x.json())
 		        .then((res) => setArray(res));
 		}, []);
-	*/
+*/
+
+/*
+
+function App() {
+	const [services, setServices] = useState([]);
 
 	const [contextData, setContextData] = useState('Pesho');
 	const [username, setUsername] = useState('Controlled Field');
@@ -66,7 +77,7 @@ function App() {
 	};
 
 	return (
-		<AuthContext.Provider value={contextData}> 
+		<AuthContext.Provider value={contextData}>
 			<>
 				<div className="login-form">
 					<form method="POST" onSubmit={submitHandler}>
@@ -163,8 +174,8 @@ function App() {
 
 				<CharacterList />
 			</>
-			</AuthContext.Provider>
+		</AuthContext.Provider>
 	);
 }
-
+*/
 export default App;
