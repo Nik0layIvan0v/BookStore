@@ -1,17 +1,49 @@
 import React from 'react';
-import { useEffect, useState, useRef } from 'react';
+import { Routes, Route } from 'react-router-dom';
+// import { useEffect, useState, useRef } from 'react';
+// import CharacterList from './hooks/CharacterList';
 import AuthContext from './contexts/authContext';
-import Example from './components/ClassComponentsExample/Example';
-import { Route } from 'react-router';
-import CharacterList from './hooks/CharacterList';
-import './App.css';
+import * as authService from './services/authService';
+
 import AppLoader from './components/AppLoader/AppLoader';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Dashboard from './components/Dashboard/Dashboard';
+import DetailsForBook from './components/DetailsForBook/DetailsForBook';
+import EditBook from './components/EditBook/EditBook';
+import MyBooks from './components/MyBooks/MyBooks';
+import CreateBook from './components/CreateBook/CreateBook';
 
 function App() {
 	return (
-		<div className="App">
-			<AppLoader />
-		</div>
+		<AuthContext.Provider>
+			<div className="App">
+				<Header />
+				<main className="container">
+					<Routes>
+						<Route path="/" element={<Dashboard />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
+						<Route
+							path="/book-details"
+							element={<DetailsForBook />}
+						/>
+						<Route path="/book-edit" element={<EditBook />} />
+						<Route path="/my-books" element={<MyBooks />} />
+						<Route
+							path="/create-book"
+							element={<CreateBook />}
+						/>
+						<Route path="/" element={<Dashboard />} />
+						<Route path="/" element={<Dashboard />} />
+						<Route path="/" element={<Dashboard />} />
+					</Routes>
+				</main>
+				<Footer />
+			</div>
+		</AuthContext.Provider>
 	);
 }
 

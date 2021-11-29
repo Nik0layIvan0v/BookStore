@@ -1,38 +1,16 @@
 /*** The new CSS Reset - version 1.4.1 (last updated 23.11.2021) ***/
 
-@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
-@import url("../fonts/ComforterBrush-Regular.ttf");
-@import url("../fonts/DancingScript-Bold.ttf");
-@import url('../fonts/DancingScript-Medium.ttf');
-@import url('../fonts/DancingScript-Regular.ttf');
-@import url('../fonts/DancingScript-SemiBold.ttf');
-@import url('../fonts/DancingScript-VariableFont_wght.ttf');
-@import url('../fonts/Estonia-Regular.ttf');
-@import url('../fonts/Lobster-Regular.ttf');
-@import url('../fonts/Roboto-Black.ttf');
-@import url('../fonts/Roboto-BlackItalic.ttf');
-@import url('../fonts/Roboto-Bold.ttf');
-@import url('../fonts/Roboto-BoldItalic.ttf');
-@import url('../fonts/Roboto-Italic.ttf');
-@import url('../fonts/Roboto-Light.ttf');
-@import url('../fonts/Roboto-LightItalic.ttf');
-@import url('../fonts/Roboto-Medium.ttf');
-@import url('../fonts/Roboto-MediumItalic.ttf');
-@import url('../fonts/Roboto-Regular.ttf');
-@import url('../fonts/Roboto-Thin.ttf');
-@import url('../fonts/Roboto-ThinItalic.ttfs');
+html {
+    height: 100%;
+}
+
 
 /*
     Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
     - The "symbol *" part is to solve Firefox SVG sprite bug
  */
 
-*:where(:not(iframe,
-canvas,
-img,
-svg,
-video):not(svg *,
-symbol *)) {
+*:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
     all: unset;
     display: revert;
 }
@@ -84,4 +62,9 @@ textarea {
     -webkit-user-modify: read-write;
     overflow-wrap: break-word;
     -webkit-line-break: after-white-space;
+}
+
+body {
+    height: 100vh;
+    position: relative;
 }

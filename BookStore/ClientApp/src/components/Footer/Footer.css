@@ -1,0 +1,15 @@
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* height: 50px; */
+    padding: 16px;
+    box-shadow: 16px 16px 16px 16px black;
+}
+
+.footer-content {
+    font-size: 16px;
+    margin-bottom: 0px;
+    text-align: center;
+    color: black;
+}

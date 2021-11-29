@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Comforter&display=swap');
+.navigation {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px -8px 19px 7px black;
+    padding: 6px;
+}
+
+svg {
+    height: 30px;
+    width: 45px;
+}
+
+.logo-text {
+    font-family: 'Comforter', cursive;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    color: rebeccapurple;
+}
+
+.logo-text:hover {
+    text-decoration: none;
+    color: gray;
+}
+
+.nav-item {
+    border-radius: 3px;
+    border: 1px solid black;
+    padding: 8px;
+    margin: 1px 3px;
+    color: black;
+}
+
+.nav-item:hover {
+    background: gray;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
