@@ -22,8 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\components\" />
-    <Folder Include="ClientApp\src\services\" />
+    <Folder Include="ClientApp\src\components\AppLoader\" />
+    <Folder Include="ClientApp\src\components\Header\" />
+    <Folder Include="ClientApp\src\components\Footer\" />
+    <Folder Include="ClientApp\src\components\Login\" />
+    <Folder Include="ClientApp\src\components\CreateBook\" />
+    <Folder Include="ClientApp\src\components\EditBook\" />
+    <Folder Include="ClientApp\src\components\MyBooks\" />
+    <Folder Include="ClientApp\src\components\DetailsForBook\" />
+    <Folder Include="ClientApp\src\components\Dashboard\" />
+    <Folder Include="ClientApp\src\components\Register\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

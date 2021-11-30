@@ -1,36 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../logo.svg';
-import './Header.css';
 
 function Header() {
 	return (
-		<nav className="navigation">
-			<div className="nav-logo">
-				<Link to="/" className="logo-text" href="/">
-					<Logo className="l" />
-					Book Store
-				</Link>
-			</div>
-			<div className="nav-buttons">
-				<Link className="nav-item" to="/login">
-					Login
-				</Link>
-				<Link className="nav-item" to="/register">
-					Register
-				</Link>
-				<Link className="nav-item" to="/login">
-					My Account
-				</Link>
-				<Link className="nav-item" to="/login">
-					Add Book
-				</Link>
-				<Link className="nav-item" to="/login">
-					Logout
-				</Link>
-			</div>
-		</nav>
+		<header>
+			<nav>
+				<ul>
+					<li>Home</li>
+					<li>Books</li>
+					<li>About</li>
+					<li>Home</li>
+				</ul>
+			</nav>
+		</header>
 	);
 }
 
 export default Header;
+
+{
+	/* <Link to="/" className="navbar-brand" href="/home">
+					<img
+						src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg"
+						width={30}
+						height={30}
+						className="d-inline-block align-top"
+						alt=""
+					/>
+					Book Store
+				</Link> */
+}

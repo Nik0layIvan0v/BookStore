@@ -17,6 +17,8 @@
 
         public DbSet<Genre> Genres { get; init; }
 
+        public DbSet<BooksGenres> BooksGenres { get; set; }
+
         public DbSet<Review> Reviews { get; init; }
 
         public DbSet<Publisher> Publishers { get; init; }

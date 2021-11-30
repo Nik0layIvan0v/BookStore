@@ -1,4 +1,6 @@
 import React from 'react';
-function MyBooks() {}
+function MyBooks() {
+	return <div>ok</div>;
+}
 
 export default MyBooks;

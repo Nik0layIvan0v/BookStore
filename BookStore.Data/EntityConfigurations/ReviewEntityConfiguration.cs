@@ -8,7 +8,6 @@
     {
         public void Configure(EntityTypeBuilder<Review> review)
         {
-            throw new System.NotImplementedException();
         }
     }
 }

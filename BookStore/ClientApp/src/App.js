@@ -19,9 +19,10 @@ import CreateBook from './components/CreateBook/CreateBook';
 function App() {
 	return (
 		<AuthContext.Provider>
-			<div className="App">
+			<div className="container-fluid">
 				<Header />
-				<main className="container">
+
+				<div className="container">
 					<Routes>
 						<Route path="/" element={<Dashboard />} />
 						<Route path="/login" element={<Login />} />
@@ -36,11 +37,8 @@ function App() {
 							path="/create-book"
 							element={<CreateBook />}
 						/>
-						<Route path="/" element={<Dashboard />} />
-						<Route path="/" element={<Dashboard />} />
-						<Route path="/" element={<Dashboard />} />
 					</Routes>
-				</main>
+				</div>
 				<Footer />
 			</div>
 		</AuthContext.Provider>

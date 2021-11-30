@@ -9,7 +9,6 @@
     {
         public void Configure(EntityTypeBuilder<Publisher> publisher)
         {
-            throw new NotImplementedException();
         }
     }
 }

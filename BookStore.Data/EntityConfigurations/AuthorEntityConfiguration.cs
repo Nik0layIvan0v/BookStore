@@ -9,7 +9,6 @@
     {
         public void Configure(EntityTypeBuilder<Author> author)
         {
-            throw new NotImplementedException();
         }
     }
 }

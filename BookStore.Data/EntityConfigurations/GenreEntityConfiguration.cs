@@ -8,7 +8,6 @@
     {
         public void Configure(EntityTypeBuilder<Genre> genre)
         {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -8,7 +8,6 @@
     {
         public void Configure(EntityTypeBuilder<Book> book)
         {
-            throw new System.NotImplementedException();
         }
     }
 }
