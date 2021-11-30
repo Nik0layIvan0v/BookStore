@@ -11,6 +11,7 @@
         {
             this.Genres = new HashSet<BooksGenres>();
             this.Reviews = new HashSet<Review>();
+            this.OrderDetails = new HashSet<OrderDetails>();
         }
 
         [Required]
@@ -40,6 +41,8 @@
         public ICollection<BooksGenres> Genres { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
+
+        public ICollection<OrderDetails> OrderDetails { get; set; }
 
     }
 }

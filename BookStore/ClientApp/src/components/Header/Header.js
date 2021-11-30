@@ -1,15 +1,24 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { getGenres } from '../../services/genreService';
 import { Link } from 'react-router-dom';
 
 function Header() {
+	const [genres, setGenres] = useState([]);
+
+	useEffect(() => {
+		getGenres().then((res) => setGenres(res));
+
+		setGenres(genres);
+	}, []);
+
 	return (
 		<header>
 			<nav>
 				<ul>
-					<li>Home</li>
-					<li>Books</li>
-					<li>About</li>
-					<li>Home</li>
+					{genres.map((g) => (
+						<li key={g.genreId}>{g.genreContent}</li>
+					))}
 				</ul>
 			</nav>
 		</header>

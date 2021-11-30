@@ -2,6 +2,9 @@
 
 namespace BookStore.Controllers
 {
+    using BookStore.Services;
+    using BookStore.Services.Contracts;
+    using BookStore.Services.Models;
     using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Collections.Generic;
@@ -12,11 +15,18 @@ namespace BookStore.Controllers
     [ApiController]
     public class GenresController : ControllerBase
     {
+        private readonly IGenreService genreService;
+
+        public GenresController(IGenreService genreService)
+        {
+            this.genreService = genreService;
+        }
+
         // GET: api/<GenresController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<GenreServiceModel>> GetAllService()
         {
-            return new string[] { "value1", "value2" };
+           return await this.genreService.GetAllGenres();
         }
 
         //// GET api/<GenresController>/5

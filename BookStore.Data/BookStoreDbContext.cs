@@ -23,6 +23,12 @@
 
         public DbSet<Publisher> Publishers { get; init; }
 
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+
         //Add DbSets....
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

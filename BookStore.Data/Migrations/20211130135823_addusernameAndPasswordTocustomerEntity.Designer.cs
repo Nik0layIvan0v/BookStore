@@ -4,14 +4,16 @@ using BookStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookStore.Data.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211130135823_addusernameAndPasswordTocustomerEntity")]
+    partial class addusernameAndPasswordTocustomerEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,7 +146,7 @@ namespace BookStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("BookStore.Models.Genre", b =>
@@ -160,46 +162,6 @@ namespace BookStore.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
-                });
-
-            modelBuilder.Entity("BookStore.Models.Order", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CustomerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("OrderState")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("BookStore.Models.OrderDetails", b =>
-                {
-                    b.Property<string>("OrderId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BookId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrderId", "BookId");
-
-                    b.HasIndex("BookId");
-
-                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("BookStore.Models.Publisher", b =>
@@ -280,36 +242,6 @@ namespace BookStore.Data.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("BookStore.Models.Order", b =>
-                {
-                    b.HasOne("BookStore.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("BookStore.Models.OrderDetails", b =>
-                {
-                    b.HasOne("BookStore.Models.Book", "Book")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("BookStore.Models.Order", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("BookStore.Models.Review", b =>
                 {
                     b.HasOne("BookStore.Models.Book", "Book")
@@ -338,8 +270,6 @@ namespace BookStore.Data.Migrations
                 {
                     b.Navigation("Genres");
 
-                    b.Navigation("OrderDetails");
-
                     b.Navigation("Reviews");
                 });
 
@@ -351,11 +281,6 @@ namespace BookStore.Data.Migrations
             modelBuilder.Entity("BookStore.Models.Genre", b =>
                 {
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("BookStore.Models.Order", b =>
-                {
-                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("BookStore.Models.Publisher", b =>
