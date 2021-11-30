@@ -10,10 +10,10 @@
 
         public Book Book { get; set; }
 
-        //[Required]
-        //public string CustomerId { get; set; }
+        [Required]
+        public string CustomerId { get; set; }
 
-        //public Customer Customer { get; set; }
+        public Customer Customer { get; set; }
 
         public DateTime DateOfCreation { get; set; }
     }

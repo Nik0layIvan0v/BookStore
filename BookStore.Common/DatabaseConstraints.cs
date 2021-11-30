@@ -42,5 +42,32 @@
 
             public const int NameMaxLength = 100;
         }
+
+        public static class CustomerConstraint
+        {
+            public const int FirstNameMinLength = 5;
+
+            public const int FirstNameMaxLength = 100;
+
+            public const int LastNameMinLength = 5;
+
+            public const int LastNameMaxLength = 100;
+
+            public const int PostalCodeMinLength = 6;
+
+            public const int PostalCodeMaxLength = 6;
+
+            public const int StreetMinLength = 5;
+
+            public const int StreetMaxLength = 100;
+
+            public const int CityMinLength = 5;
+
+            public const int CityMaxLength = 100;
+
+            public const int PhoneNumberMinLength = 5;
+
+            public const int PhoneNumberMaxLength = 100;
+        }
     }
 }
