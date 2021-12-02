@@ -1,16 +1,29 @@
 ﻿namespace BookStore.Infrastructure
 {
-    using BookStore.Data;
-    using BookStore.Models;
+    using Data;
+    using Models;
+    using Helpers;
     using Microsoft.Extensions.Configuration;
-    using BookStore.Services.Identity;
-    using BookStore.Services.Identity.Contracts;
+    using Services.Identity;
+    using Services.Identity.Contracts;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.EntityFrameworkCore;
+    using System.Text;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.IdentityModel.Tokens;
 
     public static class ServiceCollectionExtensions
     {
+        public static AppSettings GetApplicationSettings(this IServiceCollection services, IConfiguration configuration)
+        {
+            var appSettingsConfiguration = configuration.GetSection("AppSettings");
+
+            services.Configure<AppSettings>(appSettingsConfiguration);
+
+            return appSettingsConfiguration.Get<AppSettings>();
+        }
+
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddTransient<BookStoreDesingTimeFactory>();
@@ -43,6 +56,31 @@
            {
                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, AppSettings settings)
+        {
+            var key = Encoding.ASCII.GetBytes(settings.Secret);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
 
             return services;
         }

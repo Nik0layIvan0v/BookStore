@@ -9,6 +9,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Options;
 
     public class IdentityController : ApiController
     {
@@ -16,17 +17,21 @@
         private readonly UserManager<User> userManager;
         private readonly AppSettings appSettings;
 
-        public IdentityController(IIdentityService userService, UserManager<User> userManager, AppSettings appSettings)
+        public IdentityController
+        (
+            IIdentityService userService,
+            UserManager<User> userManager, 
+            IOptions<AppSettings> appSettings
+        )
         {
             this.userManager = userManager;
-            this.appSettings = appSettings;
+            this.appSettings = appSettings.Value;
             this.userService = userService;
         }
 
         [HttpPost]
         [AllowAnonymous]
         [Route(nameof(Login))]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult<LoginResponseModel>> Login([FromBody] LoginRequestModel model)
         {
             //TODO: Add Email check so user can decide to login with email or username!
@@ -55,7 +60,6 @@
         [HttpPost]
         [AllowAnonymous]
         [Route(nameof(Register))]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult<RegisterResponceModel>> Register([FromBody] RegisterRequestModel model)
         {
             var user = new User

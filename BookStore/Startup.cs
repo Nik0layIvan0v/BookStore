@@ -3,7 +3,6 @@ namespace BookStore
     using BookStore.Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -21,16 +20,15 @@ namespace BookStore
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddBookStoreDbContext(this.Configuration);
 
             services.AddBookStoreIdentity();
 
-            services.AddControllers(options =>
-                        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())
-            );
+            services.AddControllers();
 
             services.AddCors();
+
+            services.AddJwtAuthentication(services.GetApplicationSettings(this.Configuration));
 
             services.AddServices();
 
@@ -47,15 +45,9 @@ namespace BookStore
                 app.UseDeveloperExceptionPage();
             }
 
-            app.ApplyMigrations();
-
             app.UseHttpsRedirection();
 
-            app.UseSpaStaticFiles();
-
-            app.UseAuthentication();
-
-            app.UseAuthorization();
+            app.UseRouting();
 
             app.UseCors(options =>
                             options
@@ -63,12 +55,21 @@ namespace BookStore
                                 .AllowAnyHeader()
                                 .AllowAnyMethod());
 
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
-            });
+           {
+               endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller}/{action=Index}/{id?}");
+           });
+
+
+            app.ApplyMigrations();
+
+            app.UseSpaStaticFiles();
 
             app.UseSpa(spa =>
             {
