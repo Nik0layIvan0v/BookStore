@@ -1,10 +1,11 @@
 ﻿namespace BookStore.Data
 {
     using BookStore.Models;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using System.Reflection;
 
-    public class BookStoreDbContext : DbContext
+    public class BookStoreDbContext : IdentityDbContext<User>
     {
         public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options)
                : base(options)
@@ -34,6 +35,7 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

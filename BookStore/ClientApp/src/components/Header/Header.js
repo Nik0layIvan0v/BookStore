@@ -12,17 +12,7 @@ function Header() {
 		setGenres(genres);
 	}, []);
 
-	return (
-		<header>
-			<nav>
-				<ul>
-					{genres.map((g) => (
-						<li key={g.genreId}>{g.genreContent}</li>
-					))}
-				</ul>
-			</nav>
-		</header>
-	);
+	return <header></header>;
 }
 
 export default Header;

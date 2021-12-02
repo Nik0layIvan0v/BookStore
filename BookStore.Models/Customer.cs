@@ -36,10 +36,9 @@
         public string PhoneNumber { get; set; }
 
         [Required]
-        public string Username { get; set; }
+        public string UserId { get; set; }
 
-        [Required]
-        public string Password { get; set; }
+        public User User { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
     }
