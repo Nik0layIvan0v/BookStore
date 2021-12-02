@@ -4,11 +4,10 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
-    using System;
 
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder PrepareDatabase(this IApplicationBuilder applicationBuilder)
+        public static IApplicationBuilder ApplyMigrations(this IApplicationBuilder applicationBuilder)
         {
             using var serviceScope = applicationBuilder.ApplicationServices.CreateScope();
 

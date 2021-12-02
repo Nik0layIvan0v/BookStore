@@ -1,47 +1,77 @@
-﻿// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace BookStore.Controllers
+﻿namespace BookStore.Controllers
 {
-    using BookStore.Models;
-    using BookStore.Models.Identity;
-    using BookStore.Services.Identity.Contracts;
-    using BookStore.Services.Identity.Models;
+    using Helpers;
+    using Models;
+    using Models.Identity;
+    using Services.Identity.Contracts;
+    using Services.Identity.Models;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public class IdentityController : ApiController
     {
         private readonly IIdentityService userService;
         private readonly UserManager<User> userManager;
+        private readonly AppSettings appSettings;
 
-        public IdentityController(IIdentityService userService, UserManager<User> userManager)
+        public IdentityController(IIdentityService userService, UserManager<User> userManager, AppSettings appSettings)
         {
             this.userManager = userManager;
+            this.appSettings = appSettings;
             this.userService = userService;
         }
 
         [HttpPost]
         [AllowAnonymous]
         [Route(nameof(Login))]
-        public async Task<ActionResult> Login(LoginRequestModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult<LoginResponseModel>> Login([FromBody] LoginRequestModel model)
         {
-            return Ok();
+            //TODO: Add Email check so user can decide to login with email or username!
+
+            var user = await this.userManager.FindByNameAsync(model.Username);
+
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var isPaswordValid = await this.userManager.CheckPasswordAsync(user, model.Password);
+
+            if (isPaswordValid == false)
+            {
+                return Unauthorized();
+            }
+
+            var serviceModel = new IdentityServiceModel(user.Id, user.UserName, appSettings.Secret);
+
+            var token = this.userService.GenerateJwtToken(serviceModel);
+
+            return new LoginResponseModel(token);
         }
 
         [HttpPost]
         [AllowAnonymous]
         [Route(nameof(Register))]
-        public async Task<ActionResult> Register(RegisterRequestModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult<RegisterResponceModel>> Register([FromBody] RegisterRequestModel model)
         {
-            return Ok();
-        }
+            var user = new User
+            {
+                Email = model.Email,
+                UserName = model.Username
+            };
 
-        public async Task<ActionResult> Logout(string userId)
-        {
-            return Ok();
+            var result = await this.userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            return new RegisterResponceModel(user.Id, user.UserName);
         }
     }
 }

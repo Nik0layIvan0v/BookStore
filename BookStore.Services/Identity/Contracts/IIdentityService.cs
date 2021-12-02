@@ -5,6 +5,6 @@
 
     public interface IIdentityService
     {
-        IActionResult Authenticate(IdentityModel model);
+        string GenerateJwtToken(IdentityServiceModel model);
     }
 }

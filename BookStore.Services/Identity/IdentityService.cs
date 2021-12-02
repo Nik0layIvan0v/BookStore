@@ -7,7 +7,7 @@
 
     public class IdentityService : IIdentityService
     {
-        public IActionResult Authenticate(IdentityModel model)
+        public string GenerateJwtToken(IdentityServiceModel model)
         {
             throw new NotImplementedException();
         }

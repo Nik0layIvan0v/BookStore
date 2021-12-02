@@ -1,16 +1,10 @@
 namespace BookStore
 {
-    using BookStore.Data;
     using BookStore.Infrastructure;
-    using BookStore.Models;
-    using BookStore.Services.Identity.Contracts;
-    using BookStore.Services.Identity;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -25,25 +19,12 @@ namespace BookStore
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookStoreDbContext>(options =>
-           {
-               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-           });
 
-            services.AddIdentity<User, IdentityRole>(
-                options =>
-                    {
-                        options.Password.RequiredLength = 3;
-                        options.SignIn.RequireConfirmedAccount = false;
-                        options.Password.RequireDigit = false;
-                        options.Password.RequireLowercase = false;
-                        options.Password.RequireNonAlphanumeric = false;
-                        options.Password.RequireUppercase = false;
-                    })
-                .AddEntityFrameworkStores<BookStoreDbContext>();
+            services.AddBookStoreDbContext(this.Configuration);
+
+            services.AddBookStoreIdentity();
 
             services.AddControllers(options =>
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())
@@ -51,18 +32,14 @@ namespace BookStore
 
             services.AddCors();
 
-            services.AddTransient<BookStoreDesingTimeFactory>();
+            services.AddServices();
 
-            services.AddTransient<IIdentityService, IdentityService>();
-
-            // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -70,7 +47,7 @@ namespace BookStore
                 app.UseDeveloperExceptionPage();
             }
 
-            app.PrepareDatabase();
+            app.ApplyMigrations();
 
             app.UseHttpsRedirection();
 
@@ -79,6 +56,12 @@ namespace BookStore
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseCors(options =>
+                            options
+                                .AllowCredentials()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod());
 
             app.UseEndpoints(endpoints =>
             {
