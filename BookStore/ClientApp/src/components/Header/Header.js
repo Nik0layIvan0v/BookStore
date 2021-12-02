@@ -4,15 +4,13 @@ import { getGenres } from '../../services/genreService';
 import { Link } from 'react-router-dom';
 
 function Header() {
-	const [genres, setGenres] = useState([]);
+	const [genres, setGenres] = useState('');
 
 	useEffect(() => {
 		getGenres().then((res) => setGenres(res));
-
-		setGenres(genres);
 	}, []);
 
-	return <header></header>;
+	return <header>{genres}</header>;
 }
 
 export default Header;
