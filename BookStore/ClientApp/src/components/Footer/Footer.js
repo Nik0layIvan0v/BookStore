@@ -2,8 +2,12 @@ import React from 'react';
 
 function Footer() {
 	return (
-		<footer>
-			<div>ok</div>
+		<footer className="py-5 bg-dark">
+			<div className="container">
+				<p className="m-0 text-center text-white">
+					Copyright © Book Store 2021
+				</p>
+			</div>
 		</footer>
 	);
 }

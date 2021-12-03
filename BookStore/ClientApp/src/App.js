@@ -15,48 +15,31 @@ import DetailsForBook from './components/DetailsForBook/DetailsForBook';
 import EditBook from './components/EditBook/EditBook';
 import MyBooks from './components/MyBooks/MyBooks';
 import CreateBook from './components/CreateBook/CreateBook';
+import Navigation from './components/Navigation/Navigation';
+import BookSuggestion from './components/BookSuggestion/BookSuggestion';
 
 function App() {
 	return (
 		<AuthContext.Provider>
-			<div className="container-fluid">
-				<Header />
-
-				<div className="container">
-					<Routes>
-						<Route path="/" element={<Dashboard />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/register" element={<Register />} />
-						<Route
-							path="/book-details"
-							element={<DetailsForBook />}
-						/>
-						<Route path="/book-edit" element={<EditBook />} />
-						<Route path="/my-books" element={<MyBooks />} />
-						<Route
-							path="/create-book"
-							element={<CreateBook />}
-						/>
-					</Routes>
-				</div>
-				<Footer />
-			</div>
+			<Navigation />
+			<Header />
+			<Routes>
+				<Route path="/" element={<Dashboard />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/book-details" element={<DetailsForBook />} />
+				<Route path="/book-edit" element={<EditBook />} />
+				<Route path="/my-books" element={<MyBooks />} />
+				<Route path="/create-book" element={<CreateBook />} />
+			</Routes>
+			<BookSuggestion />
+			<Footer />
 		</AuthContext.Provider>
 	);
 }
 
-/*
-		Asp.Net core fetch data.
-		const [array, setArray] = useState([]);
-
-		useEffect(() => {
-		    fetch('https://localhost:3001/api/home')
-		        .then((x) => x.json())
-		        .then((res) => setArray(res));
-		}, []);
-*/
-
-/*
+{
+	/*
 
 function App() {
 	const [services, setServices] = useState([]);
@@ -208,4 +191,6 @@ function App() {
 	);
 }
 */
+}
+
 export default App;

@@ -4,26 +4,24 @@ import { getGenres } from '../../services/genreService';
 import { Link } from 'react-router-dom';
 
 function Header() {
-	const [genres, setGenres] = useState('');
+	// const [genres, setGenres] = useState('');
 
-	useEffect(() => {
-		getGenres().then((res) => setGenres(res));
-	}, []);
+	// useEffect(() => {
+	// 	getGenres().then((res) => setGenres(res));
+	// }, []);
 
-	return <header>{genres}</header>;
+	return (
+		<header className="bg-dark py-5">
+			<div className="container px-4 px-lg-5 my-5">
+				<div className="text-center text-white">
+					<h1 className="display-4 fw-bolder">Shop in style</h1>
+					<p className="lead fw-normal text-white-50 mb-0">
+						With this shop hompeage template
+					</p>
+				</div>
+			</div>
+		</header>
+	);
 }
 
 export default Header;
-
-{
-	/* <Link to="/" className="navbar-brand" href="/home">
-					<img
-						src="https://getbootstrap.com/docs/4.1/assets/brand/bootstrap-solid.svg"
-						width={30}
-						height={30}
-						className="d-inline-block align-top"
-						alt=""
-					/>
-					Book Store
-				</Link> */
-}
