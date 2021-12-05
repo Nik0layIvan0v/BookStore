@@ -2,8 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 // import { useEffect, useState, useRef } from 'react';
 // import CharacterList from './hooks/CharacterList';
-import AuthContext from './contexts/authContext';
-import * as authService from './services/authService';
+import { AuthProvider } from './contexts/AuthContext';
 
 import AppLoader from './components/AppLoader/AppLoader';
 import Login from './components/Login/Login';
@@ -20,21 +19,26 @@ import BookSuggestion from './components/BookSuggestion/BookSuggestion';
 
 function App() {
 	return (
-		<AuthContext.Provider>
-			<Navigation />
-			<Header />
-			<Routes>
-				<Route path="/" element={<Dashboard />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-				<Route path="/book-details" element={<DetailsForBook />} />
-				<Route path="/book-edit" element={<EditBook />} />
-				<Route path="/my-books" element={<MyBooks />} />
-				<Route path="/create-book" element={<CreateBook />} />
-			</Routes>
-			<BookSuggestion />
-			<Footer />
-		</AuthContext.Provider>
+		<AuthProvider>
+			<div className="site-wrapper">
+				<Navigation />
+				<Header />
+				<Routes>
+					<Route path="/" element={<Dashboard />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
+					<Route
+						path="/book-details"
+						element={<DetailsForBook />}
+					/>
+					<Route path="/book-edit" element={<EditBook />} />
+					<Route path="/my-books" element={<MyBooks />} />
+					<Route path="/create-book" element={<CreateBook />} />
+				</Routes>
+				<BookSuggestion />
+				<Footer />
+			</div>
+		</AuthProvider>
 	);
 }
 

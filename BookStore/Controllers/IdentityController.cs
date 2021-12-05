@@ -20,7 +20,7 @@
         public IdentityController
         (
             IIdentityService userService,
-            UserManager<User> userManager, 
+            UserManager<User> userManager,
             IOptions<AppSettings> appSettings
         )
         {
@@ -54,7 +54,7 @@
 
             var token = this.userService.GenerateJwtToken(serviceModel);
 
-            return new LoginResponseModel(token);
+            return new LoginResponseModel(token, user.UserName, user.Id);
         }
 
         [HttpPost]

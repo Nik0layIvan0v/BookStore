@@ -1,8 +1,41 @@
 import { createContext } from 'react';
+import React from 'react';
+import { useState, useContext } from 'react';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-export default AuthContext;
+// export default AuthContext;
+
+const initialState = {
+	id: '',
+	username: '',
+	accsessToken: '',
+};
+
+export const AuthProvider = ({ children }) => {
+	const [user, setUser] = useState({ initialState });
+
+	const login = (username, password, accsessToken) => {
+		setUser({
+			username,
+			password,
+			accsessToken,
+		});
+	};
+
+	return (
+		<AuthContext.Provider
+			value={{ user, login, isAuthenticated: Boolean(user.username) }}
+		>
+			{children}
+		</AuthContext.Provider>
+	);
+};
+
+export const useAuth = () => {
+	const authState = useContext(AuthContext);
+	return authState;
+};
 
 /*
      Context API:
@@ -28,7 +61,4 @@ export default AuthContext;
                => import { useContext } from 'react';
           3. Декларираме на топ левел стойността от контекста
                const value = useContext(AuthContext);
-
-          
-
 */
