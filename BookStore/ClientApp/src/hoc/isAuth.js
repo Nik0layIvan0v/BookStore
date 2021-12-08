@@ -1,12 +1,12 @@
 import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuthContext } from '../contexts/AuthContext';
 import { Navigate } from 'react-router';
 
 export const isAuth = (Component) => {
 	const WrapperComponent = (props) => {
-		const { isAuthenticated } = useAuth();
+		const { isAuthenticated } = useAuthContext();
 
-		if (!isAuthenticated) {
+		if (!isAuthenticated()) {
 			return <Navigate to="/login" />;
 		}
 

@@ -8,48 +8,44 @@ import {
 	faStore,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-
-const loggetUser = (
-	<>
-		<span>Welcome, Username </span>
-		<button className="btn btn-outline-dark me-1" type="submit">
-			<FontAwesomeIcon icon={faSignOutAlt} className="me-1" />
-			Logout
-		</button>
-
-		<form className="d-flex">
-			<button className="btn btn-outline-dark" type="submit">
-				<i className="bi-cart-fill me-1" />
-				Cart
-				<span className="badge bg-dark text-white ms-1 rounded-pill">
-					0
-				</span>
-			</button>
-		</form>
-	</>
-);
-
-const notLoggetUser = (
-	<>
-		<Link
-			to="/register"
-			className="btn btn-outline-dark me-1"
-			type="submit"
-		>
-			<FontAwesomeIcon icon={faSignOutAlt} className="me-1" />
-			Register
-		</Link>
-		<Link to="/login" className="btn btn-outline-dark me-1" type="submit">
-			<FontAwesomeIcon icon={faSignInAlt} className="me-1" />
-			Login
-		</Link>
-	</>
-);
+import { useAuthContext } from '../../contexts/AuthContext';
 
 function Navigation() {
-	const { user } = useAuth();
-	console.log(user);
+	const { user } = useAuthContext();
+
+	const loggetUser = (
+		<>
+			<div>Welcome, {user.userName} </div>
+			<Link to="/logout" className="btn btn-outline-dark me-1">
+				<FontAwesomeIcon icon={faSignOutAlt} className="me-1" />
+				Logout
+			</Link>
+
+			<form className="d-flex">
+				<button className="btn btn-outline-dark">
+					<i className="bi-cart-fill me-1" />
+					Cart
+					<span className="badge bg-dark text-white ms-1 rounded-pill">
+						0
+					</span>
+				</button>
+			</form>
+		</>
+	);
+
+	const notLoggetUser = (
+		<>
+			<Link to="/register" className="btn btn-outline-dark me-1">
+				<FontAwesomeIcon icon={faSignOutAlt} className="me-1" />
+				Register
+			</Link>
+			<Link to="/login" className="btn btn-outline-dark me-1">
+				<FontAwesomeIcon icon={faSignInAlt} className="me-1" />
+				Login
+			</Link>
+		</>
+	);
+
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
 			<div className="container px-4 px-lg-5">
@@ -84,7 +80,6 @@ function Navigation() {
 								to="/"
 								className="nav-link active"
 								aria-current="page"
-								href="/"
 							>
 								<FontAwesomeIcon
 									icon={faLaptopHouse}
@@ -94,11 +89,7 @@ function Navigation() {
 							</Link>
 						</li>
 						<li className="nav-item">
-							<Link
-								to="/my-books"
-								className="nav-link"
-								href="#!"
-							>
+							<Link to="/my-books" className="nav-link">
 								<FontAwesomeIcon
 									icon={faInfoCircle}
 									className="me-1"
@@ -107,10 +98,10 @@ function Navigation() {
 							</Link>
 						</li>
 						<li className="nav-item dropdown">
-							<a
+							<Link
+								to="/"
 								className="nav-link dropdown-toggle"
 								id="navbarDropdown"
-								href="/"
 								role="button"
 								data-bs-toggle="dropdown"
 								aria-expanded="false"
@@ -120,42 +111,42 @@ function Navigation() {
 									className="me-1"
 								/>
 								Shop
-							</a>
+							</Link>
 							<ul
 								className="dropdown-menu"
 								aria-labelledby="navbarDropdown"
 							>
 								<li>
-									<a
+									<Link
+										to="/"
 										className="dropdown-item"
-										href="#!"
 									>
 										All Products
-									</a>
+									</Link>
 								</li>
 								<li>
 									<hr className="dropdown-divider" />
 								</li>
 								<li>
-									<a
+									<Link
+										to="/"
 										className="dropdown-item"
-										href="#!"
 									>
 										Popular Items
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
+										to="/"
 										className="dropdown-item"
-										href="#!"
 									>
 										New Arrivals
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</li>
 					</ul>
-					{user.username == null ? notLoggetUser : loggetUser}
+					{user.userName === '' ? notLoggetUser : loggetUser}
 				</div>
 			</div>
 		</nav>

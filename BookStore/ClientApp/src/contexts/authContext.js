@@ -1,38 +1,40 @@
-import { createContext } from 'react';
 import React from 'react';
-import { useState, useContext } from 'react';
+import { createContext, useContext } from 'react';
+import useSessionStorage from '../hooks/useSessionStorage';
 
 export const AuthContext = createContext();
 
-// export default AuthContext;
-
 const initialState = {
 	id: '',
-	username: '',
-	accsessToken: '',
+	userName: '',
+	token: undefined,
 };
 
 export const AuthProvider = ({ children }) => {
-	const [user, setUser] = useState({ initialState });
+	const [user, setUser] = useSessionStorage('user', initialState);
 
-	const login = (username, password, accsessToken) => {
-		setUser({
-			username,
-			password,
-			accsessToken,
-		});
+	const login = (authData) => {
+		setUser(authData);
+	};
+
+	const logout = () => {
+		setUser(initialState);
+	};
+
+	const isAuthenticated = () => {
+		return user.token !== '' && user.token !== undefined;
 	};
 
 	return (
 		<AuthContext.Provider
-			value={{ user, login, isAuthenticated: Boolean(user.username) }}
+			value={{ user, login, logout, isAuthenticated }}
 		>
 			{children}
 		</AuthContext.Provider>
 	);
 };
 
-export const useAuth = () => {
+export const useAuthContext = () => {
 	const authState = useContext(AuthContext);
 	return authState;
 };

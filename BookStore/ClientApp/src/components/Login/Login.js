@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import * as authService from '../../services/authService';
 import { Form, Button, Container } from 'react-bootstrap';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-	const { login } = useContext(AuthContext);
+	const { login } = useAuthContext();
 	const navigate = useNavigate();
 
 	const loginSubmitHandler = (e) => {
@@ -17,10 +17,11 @@ function Login() {
 
 		authService
 			.loginUser({ username, password })
-			.then((res) => console.log(res));
-
-		login(username, password);
-		navigate('/');
+			.then((data) => {
+				login(data);
+				navigate('/');
+			})
+			.catch((err) => console.log('use notification =>', err.message));
 	};
 
 	return (

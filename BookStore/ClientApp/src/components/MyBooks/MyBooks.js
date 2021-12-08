@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Carousel, Container } from 'react-bootstrap';
 import { isAuth } from '../../hoc/isAuth';
+import { useFetch } from '../../hooks/useFetch';
 
 function MyBooks() {
 	const [books, setBooks] = useState([]);

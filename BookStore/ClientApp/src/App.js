@@ -1,7 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-// import { useEffect, useState, useRef } from 'react';
-// import CharacterList from './hooks/CharacterList';
 import { AuthProvider } from './contexts/AuthContext';
 
 import AppLoader from './components/AppLoader/AppLoader';
@@ -16,6 +14,7 @@ import MyBooks from './components/MyBooks/MyBooks';
 import CreateBook from './components/CreateBook/CreateBook';
 import Navigation from './components/Navigation/Navigation';
 import BookSuggestion from './components/BookSuggestion/BookSuggestion';
+import Logout from './components/Logout/Logout';
 
 function App() {
 	return (
@@ -26,6 +25,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Dashboard />} />
 					<Route path="/login" element={<Login />} />
+					<Route path="/logout" element={<Logout />} />
 					<Route path="/register" element={<Register />} />
 					<Route
 						path="/book-details"

@@ -77,5 +77,14 @@
 
             return new RegisterResponceModel(user.Id, user.UserName);
         }
+
+        //[HttpPost]
+        //[Route(nameof(Logout))]
+        //public async Task<ActionResult<LoginResponseModel>> Logout([FromBody] LogoutRequestModel model)
+        //{
+        //    HttpContext.Session.Clear();
+
+        //    return Ok();
+        //}
     }
 }
