@@ -1,7 +1,6 @@
 ﻿namespace BookStore.Models.Identity
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
 
     public class LoginResponseModel
     {
