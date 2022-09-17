@@ -17,7 +17,7 @@ export const loginUser = (user) => {
 			'Content-type': 'application/json',
 		},
 		body: JSON.stringify(user),
-	}).then((resp) => resp.json());
+	});
 };
 
 export const logoutUser = (token) => {

@@ -1,6 +1,6 @@
 namespace BookStore
 {
-    using BookStore.Infrastructure;
+    using Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;

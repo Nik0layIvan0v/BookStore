@@ -1,6 +1,10 @@
 import React from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
+
 function CreateBook() {
-	return <div>ok</div>;
+	return <Form>
+		
+	</Form>;
 }
 
 export default CreateBook;
